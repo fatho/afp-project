@@ -1,4 +1,4 @@
-name:              paketname
+name:              tictactoe
 version:           0.0.0
 cabal-version:     >= 1.8
 build-type:        Simple
@@ -28,10 +28,6 @@ library
                      Settings
                      Settings.Development
                      Handler.Home
-                     Handler.Circle
-                     Handler.Another
-                     Handler.Form
-                     Handler.Skipping
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -94,7 +90,7 @@ executable         main.cgi
     main-is:           main.hs
     hs-source-dirs:    app
     build-depends:     base
-                     , paketname
+                     , tictactoe
                      , yesod
 
     ghc-options:       -threaded -O2

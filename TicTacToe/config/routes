@@ -1,7 +1,1 @@
--- Alle routes hier sollten mit /name/on/server/ beginnen!
-
-/name/on/server/ HomeR GET POST
-/name/on/server/circle/ CircleR GET
-/name/on/server/another/ AnotherR GET
-/name/on/server/form/ FormR GET POST
-/name/on/server/skipping/#Int SkippingR GET
+/team1/tictactoe/ HomeR GET
