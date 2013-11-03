@@ -1,0 +1,6 @@
+# binaries nicht ins Repository laden
+TicTacToe/dist
+TicTacToe/main.cgi
+# Objekt- und Interface-Dateien werden vom Compiler erzeugt
+*.o
+*.hi
