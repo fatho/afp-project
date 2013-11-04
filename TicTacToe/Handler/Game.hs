@@ -3,20 +3,20 @@ module Handler.Game (getGameR, postGameR) where
 
 import Import
 import Data.Text
-import Data.Maybe (fromJust)
 import Diagrams.Prelude
 
-import Handler.Field
-
 import Logic.TicTacToe
+import Logic.Rendering
 
 getGameR :: Handler Html
 getGameR = defaultLayout $ do
              $(widgetFile "introduction")
              setTitle "A strange game."
              Just currentState <- lookupSession "gameState"
+
              let 
                Just currentGame = deserializeGameState $ unpack currentState
+
              [whamlet|
                <p>
                  <embed src=@{FieldR (board currentGame)} type="image/svg+xml" onload="this.getSVGDocument().onclick = function(event){var form = document.createElement('form');form.setAttribute('method','post');form.setAttribute('action','');var hiddenField=document.createElement('input');hiddenField.setAttribute('type','hidden');hiddenField.setAttribute('name','X');hiddenField.setAttribute('value',event.clientX);form.appendChild(hiddenField);var hiddenField=document.createElement('input');hiddenField.setAttribute('type','hidden');hiddenField.setAttribute('name','Y');hiddenField.setAttribute('value',event.clientY);form.appendChild(hiddenField);document.body.appendChild(form);form.submit();};">
