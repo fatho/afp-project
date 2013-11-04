@@ -18,6 +18,6 @@ getHomeR = defaultLayout $ do
 postHomeR :: Handler Html
 postHomeR = defaultLayout $ do
   (x,y) <- runInputPost $ (,) <$> ireq doubleField "X" <*> ireq doubleField "Y"
-  let hit = sample picture (p2 (x,-y))
+  let hit = sample emptyBoardPicture (p2 (x,-y))
   setMessage $ toHtml (pack $ show hit)
   redirect HomeR
