@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
-module Handler.Home (getHomeR, postHomeR) where
+module Handler.Home (getHomeR) where
 
 import Import
 import Data.Text
