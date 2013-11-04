@@ -12,10 +12,9 @@ import Logic.TicTacToe
 
 import Text.Blaze.Svg.Renderer.Text (renderSvg)
 
-getFieldR :: Handler TypedContent
-getFieldR = do
-  mfstr <- runInputGet $ iopt textField "f"
-  let pic = drawBoard $ maybe emptyBoard id $ mfstr >>= deserializeBoard . unpack
+getFieldR :: Board -> Handler TypedContent
+getFieldR board = do
+  let pic = drawBoard board
   return $ TypedContent typeSvg $ toContent $ renderSvg $ renderDia SVG (SVGOptions Absolute) pic
 
 emptyBoardPicture :: QDiagram SVG R2 [(Int,Int)]
@@ -27,7 +26,7 @@ drawBoard field = concatRows # scale 3 # alignTL
     concatRows  = foldl1 (beside $ r2 (0,-30)) concatCols
     concatCols = map (foldl1 (beside $ r2 (30,0))) allCells
     allCells   = map rowCells [1..3]
-    rowCells r = map (\p -> drawCell p (field!p)) [(r,c) | c <- [1..3]]
+    rowCells r = map (\p -> drawCell p (field `boardAt` p)) [(r,c) | c <- [1..3]]
 
 drawCell :: Pos -> Cell -> QDiagram SVG R2 [(Int,Int)]
 drawCell pos Nothing  = cellBounds pos

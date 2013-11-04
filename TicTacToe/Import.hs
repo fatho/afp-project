@@ -13,6 +13,8 @@ import           Foundation           as Import
 import           Settings             as Import
 import           Settings.Development as Import
 
+import           Instances            as Import ()
+
 import           Data.Monoid          as Import
                                                  (Monoid (mappend, mempty, mconcat),
                                                  (<>))

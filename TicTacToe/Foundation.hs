@@ -9,6 +9,8 @@ import Settings.Development (development)
 import Text.Hamlet (hamletFile)
 import System.Log.FastLogger (Logger)
 import Web.Cookie (setCookiePath)
+import Instances ()
+import Logic.TicTacToe
 
 data App = App
     { settings :: AppConfig DefaultEnv ()

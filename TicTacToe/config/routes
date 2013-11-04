@@ -1,2 +1,2 @@
-/team1/tictactoe/      HomeR  GET POST
-/team1/tictactoe/field FieldR GET
+/team1/tictactoe/             HomeR  GET POST
+/team1/tictactoe/field/#Board FieldR GET
