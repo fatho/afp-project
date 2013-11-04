@@ -5,9 +5,8 @@ import Import
 import Data.Text
 import Diagrams.Prelude
 
-import Handler.Field
-
 import Logic.TicTacToe
+import Logic.Rendering
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do

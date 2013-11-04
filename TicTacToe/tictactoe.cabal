@@ -32,6 +32,7 @@ library
                      Handler.Field
                      Logic.TicTacToe
                      Logic.MiniMax
+                     Logic.Rendering
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
