@@ -30,6 +30,7 @@ library
                      Settings.Development
                      Handler.Home
                      Handler.Field
+                     Handler.Game
                      Logic.TicTacToe
                      Logic.MiniMax
 

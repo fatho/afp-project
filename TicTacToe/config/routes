@@ -1,2 +1,3 @@
-/team1/tictactoe/             HomeR  GET POST
+/team1/tictactoe/             HomeR  GET
 /team1/tictactoe/field/#Board FieldR GET
+/team1/tictactoe/game         GameR  GET POST
