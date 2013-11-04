@@ -5,6 +5,7 @@ import Import
 import Data.Text
 
 import Logic.TicTacToe
+import Logic.Rendering
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
