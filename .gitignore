@@ -5,3 +5,6 @@ TicTacToe/yesod-devel
 # Objekt- und Interface-Dateien werden vom Compiler erzeugt
 *.o
 *.hi
+# Sublime-Text Projekte
+*.sublime-project
+*.sublime-workspace

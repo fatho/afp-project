@@ -29,5 +29,5 @@ cellBounds :: Pos -> QDiagram SVG R2 [(Int,Int)]
 cellBounds pos = square 30 # lw 3 # value [pos] # showOrigin
 
 drawPlayer :: Player -> QDiagram SVG R2 [(Int,Int)]
-drawPlayer PlayerX = (p2 (-15,-15) ~~ p2 (15,15) `atop` p2 (-15,15) ~~ p2 (15,-15)) # lw 3 # value [] # showOrigin
-drawPlayer PlayerO = circle 15 # lw 3 # value []
+drawPlayer PlayerX = (p2 (-13,-13) ~~ p2 (13,13) `atop` p2 (-13,13) ~~ p2 (13,-13)) # lw 3 # lc red # value []
+drawPlayer PlayerO = circle 13 # lw 3 # lc blue # value []
