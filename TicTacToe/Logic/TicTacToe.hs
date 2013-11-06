@@ -7,6 +7,7 @@ module Logic.TicTacToe
   , switch
   , emptyBoard, boardAt, serializeBoard, deserializeBoard
   , serializeGameState, deserializeGameState
+  , outcome
   ) where
 
 import Prelude
