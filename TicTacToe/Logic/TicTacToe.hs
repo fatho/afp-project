@@ -3,7 +3,7 @@ module Logic.TicTacToe
   , Board, Pos, Cell
   , Player (..)
   , newGame, move
-  , possibleMoves
+  , possibleMoves, moves
   , switch
   , emptyBoard, boardAt, serializeBoard, deserializeBoard
   , serializeGameState, deserializeGameState
@@ -61,7 +61,7 @@ emptyBoard :: Board
 emptyBoard = Board $ listArray ((1,1),(3,3)) (repeat Nothing)
 
 newGame :: TicTacToe
-newGame = TicTacToe emptyBoard PlayerX
+newGame = TicTacToe emptyBoard PlayerO
 
 boardAt :: Board -> Pos -> Cell
 boardAt (Board b) p = b ! p
@@ -71,6 +71,9 @@ move (TicTacToe (Board curBoard) player) pos = TicTacToe (Board $ curBoard // [(
 
 possibleMoves :: TicTacToe -> [Pos]
 possibleMoves (TicTacToe (Board b) _) = filter (\p -> isNothing $ b!p) $ range ((1,1),(3,3))
+
+moves :: TicTacToe -> [TicTacToe]
+moves t = map (move t) (possibleMoves t)
 
 serializeGameState :: TicTacToe -> String
 serializeGameState (TicTacToe f p) = psym p : serializeBoard f where
