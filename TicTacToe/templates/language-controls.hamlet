@@ -1,0 +1,3 @@
+<div class="footer">
+        <a .linkButton href=@{LanguageR "de"}>Ich mag lieber Deutsch.
+        <a .linkButton href=@{LanguageR "en"}>I prefer English.

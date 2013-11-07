@@ -22,6 +22,7 @@ import Handler.NewGame
 import Handler.Game
 import Handler.GameEnded
 import Handler.Language
+import Handler.Favicon
 
 mkYesodDispatch "App" resourcesApp
 

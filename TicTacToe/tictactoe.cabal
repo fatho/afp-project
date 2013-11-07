@@ -35,6 +35,7 @@ library
                      Handler.NewGame
                      Handler.Session
                      Handler.Language
+                     Handler.Favicon
                      Logic.TicTacToe
                      Logic.MiniMax
                      Logic.Rendering

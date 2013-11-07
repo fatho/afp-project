@@ -15,3 +15,4 @@ getHomeR = defaultLayout $ do
              saveGameToSession initialField
              $(widgetFile "introduction")
              $(widgetFile "game-controls")
+             $(widgetFile "language-controls")

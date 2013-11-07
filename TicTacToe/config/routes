@@ -4,3 +4,4 @@
 /team1/tictactoe/game             GameR  GET POST
 /team1/tictactoe/finish           GameEndedR  GET
 /team1/tictactoe/language/#String LanguageR GET
+/team1/tictactoe/favicon.ico      FaviconR GET
