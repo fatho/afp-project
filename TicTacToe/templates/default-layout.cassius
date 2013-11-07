@@ -60,3 +60,10 @@ a.linkButton:active
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6)
   background: #2E5481
   border: solid 1px #203E5F
+
+.footer
+  position: absolute
+  bottom: 50px
+  margin: 0px auto
+  width: 100%
+  text-align: center

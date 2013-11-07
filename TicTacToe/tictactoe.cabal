@@ -34,6 +34,7 @@ library
                      Handler.GameEnded
                      Handler.NewGame
                      Handler.Session
+                     Handler.Language
                      Logic.TicTacToe
                      Logic.MiniMax
                      Logic.Rendering

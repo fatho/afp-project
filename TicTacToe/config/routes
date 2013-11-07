@@ -3,3 +3,4 @@
 /team1/tictactoe/newgame/#Player  NewGameR GET
 /team1/tictactoe/game             GameR  GET POST
 /team1/tictactoe/finish           GameEndedR  GET
+/team1/tictactoe/language/#String LanguageR GET

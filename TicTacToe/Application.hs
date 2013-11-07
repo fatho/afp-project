@@ -21,6 +21,7 @@ import Handler.Field
 import Handler.NewGame
 import Handler.Game
 import Handler.GameEnded
+import Handler.Language
 
 mkYesodDispatch "App" resourcesApp
 
