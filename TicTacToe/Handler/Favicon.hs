@@ -4,4 +4,4 @@ module Handler.Favicon (getFaviconR) where
 import Import
 
 getFaviconR :: Handler ()
-getFaviconR = sendFile "image/png" "config/favicon.png"
+getFaviconR = sendFile "image/x-icon" "config/favicon.ico"
