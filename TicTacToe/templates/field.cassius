@@ -6,4 +6,6 @@ div.spielfeld
   margin: 10px -20px
 
 embed.tictactoe
-  box-shadow: 10px 10px 15px silver;
+  box-shadow: 10px 10px 15px silver
+  width: 270px
+  height: 270px
