@@ -1,0 +1,3 @@
+<div .controlBox>
+  <center>
+    <a .linkButton .redButton href=@{HomeR}>_{MsgBackToStart}

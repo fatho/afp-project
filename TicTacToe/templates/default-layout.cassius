@@ -25,12 +25,11 @@ body
   overflow-x: hidden;
 
 .controlBox
-  margin-bottom: 20px
+  margin-bottom: 30px
   margin-top: 20px
 
 a.linkButton
   padding: 10px 15px
-  background: #4479BA
   color: #FFF
   text-decoration: none
   -webkit-border-radius: 4px
@@ -50,7 +49,6 @@ a.linkButton
   user-select:none
 
 a.linkButton:hover, a.linkButton:focus
-  background: #356094
   border: solid 1px #2A4E77
   text-decoration: none
 
@@ -58,8 +56,25 @@ a.linkButton:active
   -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6)
   -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6)
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6)
-  background: #2E5481
   border: solid 1px #203E5F
+
+a.blueButton
+  background: #4479BA
+
+a.blueButton:hover, a.blueButton:focus
+  background: #356094
+
+a.blueButton:active
+  background: #2E5481
+
+a.redButton
+  background: #900
+
+a.redButton:hover, a.redButton:focus
+  background: #800
+
+a.redButton:active
+  background: #700
 
 .footer
   position: absolute

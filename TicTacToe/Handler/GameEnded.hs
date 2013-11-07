@@ -37,6 +37,7 @@ getGameEndedR = defaultLayout $ do
               else ComputerWon
             Draw         -> NobodyWon
             _            -> error "impossible"
-      $(widgetFile "game-ended")
       fieldWidget currentGame False
+      $(widgetFile "game-ended")
       $(widgetFile "game-controls")
+      $(widgetFile "home-button")
