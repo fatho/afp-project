@@ -7,6 +7,7 @@ import Prelude
 
 import Diagrams.Prelude
 import Diagrams.Backend.SVG
+import Data.Colour.SRGB
 
 import Logic.TicTacToe
 
@@ -34,7 +35,7 @@ drawPlayer PlayerX = (p2 (-13,-13) ~~ p2 (13,13) `atop` p2 (-13,13) ~~ p2 (13,-1
 drawPlayer PlayerO = circle 13 # lw symThickness # lc ocolor # value []
 
 xcolor, ocolor :: Colour Double
-xcolor = red
-ocolor = blue
+xcolor = sRGB 0.6 0 0
+ocolor = sRGB 0.208 0.376 0.58
 symThickness :: Double
 symThickness = 4

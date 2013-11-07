@@ -96,6 +96,7 @@ library
                  , diagrams-svg
                  , diagrams-lib
                  , cookie
+                 , colour
 
 executable         main.cgi
     if flag(library-only)
