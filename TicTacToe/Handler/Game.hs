@@ -26,8 +26,15 @@ getGameR = defaultLayout $ do
 
              let maybeResult = outcome currentGame
              if isJust $ maybeResult
-                then [whamlet| <a href=@{HomeR}>#{result maybeResult} Go back.|]
+                then do 
+                  setSession "gameState" (pack $ serializeGameState newGame)
+                  [whamlet| 
+                     <a href=@{HomeR}>#{result maybeResult} Go back.
+                     <br>
+                     <a href=@{GameR}>Play again.
+                  |]
                 else [whamlet| |]
+
 
 postGameR :: Handler Html
 postGameR = defaultLayout $ do
