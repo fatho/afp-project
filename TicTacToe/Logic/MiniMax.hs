@@ -1,3 +1,5 @@
+-- Shamelessly copied those search combinators from Lukas Heidemann.
+
 module Logic.MiniMax
   ( Tree (..)
   , unfoldTree
@@ -8,6 +10,7 @@ module Logic.MiniMax
   , maximizeAB
   , minimizeAB
   , selectMaxAB
+  , selectMinAB
   , lowFirst
   , highFirst
   ) where
@@ -86,6 +89,10 @@ minimizeAB' (Node x ns) = mapMax $ fmap maximizeAB' ns where
 selectMaxAB :: Ord a => Tree a -> Maybe (Tree a)
 selectMaxAB (Node x []) = Nothing 
 selectMaxAB (Node x ns) = Just $ fst $ maximumBy (compare `on` snd) $ fmap (\n -> (n, minimizeAB n)) ns
+
+selectMinAB :: Ord a => Tree a -> Maybe (Tree a)
+selectMinAB (Node x []) = Nothing 
+selectMinAB (Node x ns) = Just $ fst $ minimumBy (compare `on` snd) $ fmap (\n -> (n, maximizeAB n)) ns
 
 --------------------------------------------------------------------------------
 -- ** Reordering

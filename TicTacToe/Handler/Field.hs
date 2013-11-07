@@ -10,7 +10,7 @@ import Logic.Rendering
 
 import Text.Blaze.Svg.Renderer.Text (renderSvg)
 
-getFieldR :: Board -> Handler TypedContent
-getFieldR board = do
-  let pic = drawBoard board
+getFieldR :: TicTacToe -> Handler TypedContent
+getFieldR field = do
+  let pic = drawBoard field
   return $ TypedContent typeSvg $ toContent $ renderSvg $ renderDia SVG (SVGOptions Absolute) pic

@@ -11,17 +11,17 @@ import Diagrams.Backend.SVG
 import Logic.TicTacToe
 
 emptyBoardPicture :: QDiagram SVG R2 [(Int,Int)]
-emptyBoardPicture = drawBoard emptyBoard
+emptyBoardPicture = drawBoard initialField
 
-drawBoard :: Board -> QDiagram SVG R2 [(Int,Int)]
+drawBoard :: TicTacToe -> QDiagram SVG R2 [(Int,Int)]
 drawBoard field = concatRows # scale 3 # alignTL
   where
     concatRows  = foldl1 (beside $ r2 (0,-30)) concatCols
     concatCols = map (foldl1 (beside $ r2 (30,0))) allCells
-    allCells   = map rowCells [1..3]
-    rowCells r = map (\p -> drawCell p (field `boardAt` p)) [(r,c) | c <- [1..3]]
+    allCells   = map rowCells [0..2]
+    rowCells r = map (\p -> drawCell p (field `getField` p)) [(r,c) | c <- [0..2]]
 
-drawCell :: Pos -> Cell -> QDiagram SVG R2 [(Int,Int)]
+drawCell :: Pos -> Maybe Player -> QDiagram SVG R2 [(Int,Int)]
 drawCell pos Nothing  = cellBounds pos
 drawCell pos (Just p) = drawPlayer p `atop` cellBounds pos
 

@@ -5,6 +5,6 @@ import Logic.TicTacToe
 import Data.Text (pack, unpack)
 import Web.PathPieces
 
-instance PathPiece Board where
-  fromPathPiece = deserializeBoard . unpack
-  toPathPiece   = pack . serializeBoard
+instance PathPiece TicTacToe where
+  fromPathPiece = deserializeField . unpack
+  toPathPiece   = pack . serializeField
