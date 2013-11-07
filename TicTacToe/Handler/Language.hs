@@ -5,7 +5,7 @@ import Import
 import Data.Text
 
 getLanguageR :: String -> Handler Html
-getLanguageR lang = defaultLayout $ do 
+getLanguageR lang = do 
                       setLanguage $ pack lang
                       setUltDestReferer
                       redirectUltDest HomeR
