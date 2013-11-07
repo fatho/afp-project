@@ -7,11 +7,11 @@ import Data.Text
 import Logic.TicTacToe
 import Logic.Rendering
 
+import Handler.Session
+
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-             $(widgetFile "introduction")
              setTitle "A strange game."
-             setSession "gameState" (pack $ serializeField initialField)
-             [whamlet|
-               <a href=@{GameR}>Start playing.
-             |]
+             saveGameToSession initialField
+             $(widgetFile "introduction")
+             $(widgetFile "game-controls")

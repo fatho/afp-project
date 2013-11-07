@@ -19,15 +19,22 @@ drawBoard field = concatRows # scale 3 # alignTL
     concatRows  = foldl1 (beside $ r2 (0,-30)) concatCols
     concatCols = map (foldl1 (beside $ r2 (30,0))) allCells
     allCells   = map rowCells [0..2]
-    rowCells r = map (\p -> drawCell p (field `getField` p)) [(r,c) | c <- [0..2]]
+    rowCells y = map (\p -> drawCell p (field `getField` p)) [(x,y) | x <- [0..2]]
 
 drawCell :: Pos -> Maybe Player -> QDiagram SVG R2 [(Int,Int)]
 drawCell pos Nothing  = cellBounds pos
 drawCell pos (Just p) = drawPlayer p `atop` cellBounds pos
 
 cellBounds :: Pos -> QDiagram SVG R2 [(Int,Int)]
-cellBounds pos = square 30 # lw 3 # value [pos] # showOrigin
+cellBounds pos = square 30 # lw 3 # value [pos]
 
 drawPlayer :: Player -> QDiagram SVG R2 [(Int,Int)]
-drawPlayer PlayerX = (p2 (-13,-13) ~~ p2 (13,13) `atop` p2 (-13,13) ~~ p2 (13,-13)) # lw 3 # lc red # value []
-drawPlayer PlayerO = circle 13 # lw 3 # lc blue # value []
+drawPlayer PlayerX = (p2 (-13,-13) ~~ p2 (13,13) `atop` p2 (-13,13) ~~ p2 (13,-13)) 
+                    # lw symThickness # lc xcolor # value []
+drawPlayer PlayerO = circle 13 # lw symThickness # lc ocolor # value []
+
+xcolor, ocolor :: Colour Double
+xcolor = red
+ocolor = blue
+symThickness :: Double
+symThickness = 4

@@ -2,6 +2,7 @@
 module Handler.Game (getGameR, postGameR) where
 
 import Import
+import Control.Monad
 import Data.Text
 import Data.Maybe
 import Diagrams.Prelude
@@ -9,6 +10,9 @@ import Diagrams.Prelude
 import Logic.TicTacToe
 import Logic.Rendering
 import Logic.MiniMax
+
+import Handler.Field
+import Handler.Session
 
 import Debug.Trace
 
@@ -20,57 +24,52 @@ getGameR = defaultLayout $ do
   $(widgetFile "introduction")
   setTitle "A strange game."
 
-  Just currentState <- lookupSession "gameState"
+  Just currentGame <- readGameFromSession
+  Just humanPlayer <- getHumanPlayer
+
   let 
-    Just currentGame = deserializeField $ unpack (traceId currentState)
-    
-  [whamlet|
-    <p>
-      <embed src=@{FieldR currentGame} type="image/svg+xml" onload="this.getSVGDocument().onclick = function(event){var form = document.createElement('form');form.setAttribute('method','post');form.setAttribute('action','');var hiddenField=document.createElement('input');hiddenField.setAttribute('type','hidden');hiddenField.setAttribute('name','X');hiddenField.setAttribute('value',event.clientX);form.appendChild(hiddenField);var hiddenField=document.createElement('input');hiddenField.setAttribute('type','hidden');hiddenField.setAttribute('name','Y');hiddenField.setAttribute('value',event.clientY);form.appendChild(hiddenField);document.body.appendChild(form);form.submit();};">
-  |]
-
-  let info = gameInfo currentGame
-  if hasEnded info
-     then do 
-       setSession "gameState" (pack $ serializeField initialField)
-       [whamlet| 
-          <a href=@{HomeR}>#{result info} Go back.
-          <br>
-          <a href=@{GameR}>Play again.
-       |]
-     else [whamlet| |]
-
+    nextGame = if player currentGame /= humanPlayer
+                then makeComputerMove currentGame (switch humanPlayer)
+                else currentGame
+  saveGameToSession nextGame
+  if hasEnded $ gameInfo nextGame
+    -- Der Computer hat mit seinem Zug gewonnen
+    then redirect GameEndedR 
+    else renderGameInProgress nextGame
+  $(widgetFile "game-inprogress")
 
 postGameR :: Handler Html
 postGameR = defaultLayout $ do
-              Just currentState <- lookupSession "gameState"
+              Just currentGame <- readGameFromSession
+              Just humanPlayer <- getHumanPlayer
+
               (x,y) <- runInputPost $ (,) <$> ireq doubleField "X" <*> ireq doubleField "Y"
 
               let 
                 hit = (sample emptyBoardPicture (p2 (x,-y))) !! 0
-                Just currentGame = deserializeField $ unpack currentState
-                nextGameState = processClick currentGame PlayerX hit
+                nextGameState = processClick currentGame humanPlayer hit
 
               setSession "gameState" (pack $ serializeField $ nextGameState)
               redirect GameR
 
+renderGameInProgress :: TicTacToe -> Widget
+renderGameInProgress field = fieldWidget field True
+
 processClick :: TicTacToe -> Player -> Pos -> TicTacToe
 processClick game human clickedField = if (isNothing $ getField game clickedField) && (isNothing $ winner game)
-	                                then 
-                                        let game' = setField (traceId game) human clickedField in 
-                                        if isNothing $ winner (traceId game')
-                                            then makeComputerMove game'
-                                            else game'
-	                                else game 
+	                                then setField game human clickedField
+	                                else game
 
-makeComputerMove :: TicTacToe -> TicTacToe
-makeComputerMove game = maybe game id $ nextDrawO game
+makeComputerMove :: TicTacToe -> Player -> TicTacToe
+makeComputerMove game comp = maybe game id $ nextDraw game where
+  nextDraw = case comp of 
+    PlayerX -> nextDrawX
+    PlayerO -> nextDrawO
 
 result :: GameInfo -> String
 result InProgress = "Game is in progress."
 result Draw       = "Game has ended with a draw."
 result (WonBy x)  = "Game has ended. " ++ show x ++ " has won." 
-
 
 nextDrawX :: TicTacToe -> Maybe TicTacToe
 nextDrawX

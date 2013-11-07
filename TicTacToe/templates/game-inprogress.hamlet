@@ -1,0 +1,3 @@
+<div .controlBox>
+  <center>
+    <a .linkButton href="@{HomeR}">_{MsgSurrender}

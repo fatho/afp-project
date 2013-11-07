@@ -17,6 +17,7 @@ module Logic.TicTacToe
   , serializeField
   , deserializeField
   , gameInfo
+  , switch
   ) where
 
 import Control.Applicative
@@ -29,9 +30,10 @@ import Prelude
 -- * Tic Tac Toe
 
 -- | Tic tac toe player.
-data Player = PlayerX | PlayerO deriving (Eq, Show)
+data Player = PlayerX | PlayerO deriving (Eq, Show, Read)
 
-data GameInfo = WonBy Player | Draw | InProgress
+-- | Representation of the current game state. Not needed by actual AI.
+data GameInfo = WonBy Player | Draw | InProgress deriving (Show)
 hasEnded :: GameInfo -> Bool
 hasEnded InProgress = False
 hasEnded _          = True
@@ -65,12 +67,16 @@ instance Read TicTacToe where
     where
       (prefix, rest) = splitAt 9 str
 
+-- | Returns the row major string representaion of the tic tac toe field.
+-- The players are encoded by 'X' and 'O', empty cells by '~'
 serializeField :: TicTacToe -> String
 serializeField field = fmap (toChar . getField field) positions where
     toChar (Just PlayerX) = 'X'
     toChar (Just PlayerO) = 'O'
     toChar Nothing  = '~'
 
+-- | Creates a tic tac toe field from a row major string representation.
+-- The players are encoded by 'X' and 'O', empty cells by '~'
 deserializeField :: String -> Maybe TicTacToe
 deserializeField str = foldl set initialField <$> zip positions <$> mapM fromChar input where
   input = take 9 (str ++ repeat '~')
@@ -132,6 +138,10 @@ gameInfo :: TicTacToe -> GameInfo
 gameInfo field = case winner field of
   Just x  -> WonBy x
   Nothing -> if null (freePositions field) then Draw else InProgress
+
+switch :: Player -> Player
+switch PlayerX = PlayerO
+switch PlayerO = PlayerX
 
 --------------------------------------------------------------------------------
 -- ** Internal operations

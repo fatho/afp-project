@@ -1,0 +1,4 @@
+<div .controlBox>
+  <center>
+    <a .linkButton href=@{NewGameR PlayerX}>_{MsgStartGameHuman}
+    <a .linkButton href=@{NewGameR PlayerO}>_{MsgStartGameComputer}

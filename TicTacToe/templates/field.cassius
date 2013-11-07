@@ -1,0 +1,9 @@
+div.spielfeld
+  text-align: center
+  padding: 30px
+  background: rgba(0, 0, 0, 0.1)
+  box-shadow: #999 0px 0px 10px 0px inset
+  margin: 10px -20px
+
+embed.tictactoe
+  box-shadow: 10px 10px 15px silver;

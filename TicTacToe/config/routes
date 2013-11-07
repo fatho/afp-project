@@ -1,3 +1,5 @@
 /team1/tictactoe/                 HomeR  GET
 /team1/tictactoe/field/#TicTacToe FieldR GET
+/team1/tictactoe/newgame/#Player  NewGameR GET
 /team1/tictactoe/game             GameR  GET POST
+/team1/tictactoe/finish           GameEndedR  GET

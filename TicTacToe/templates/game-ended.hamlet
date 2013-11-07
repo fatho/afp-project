@@ -1,0 +1,8 @@
+<p .finalMessage>
+  $case gameResult
+    $of HumanWon
+      _{MsgHumanWon}
+    $of ComputerWon
+      _{MsgHumanLost}
+    $of NobodyWon
+      _{MsgDraw}

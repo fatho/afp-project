@@ -31,6 +31,9 @@ library
                      Handler.Home
                      Handler.Field
                      Handler.Game
+                     Handler.GameEnded
+                     Handler.NewGame
+                     Handler.Session
                      Logic.TicTacToe
                      Logic.MiniMax
                      Logic.Rendering
