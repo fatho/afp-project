@@ -66,18 +66,12 @@ makeComputerMove game comp = maybe game id $ nextDraw game where
     PlayerX -> nextDrawX
     PlayerO -> nextDrawO
 
-result :: GameInfo -> String
-result InProgress = "Game is in progress."
-result Draw       = "Game has ended with a draw."
-result (WonBy x)  = "Game has ended. " ++ show x ++ " has won." 
-
 nextDrawX :: TicTacToe -> Maybe TicTacToe
 nextDrawX
   = fmap (\(Node x _) -> x)
   . selectMinAB
   . prune 7
   . unfoldTree moves
-
 
 nextDrawO :: TicTacToe -> Maybe TicTacToe
 nextDrawO
