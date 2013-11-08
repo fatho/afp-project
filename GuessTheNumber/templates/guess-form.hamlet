@@ -1,0 +1,5 @@
+<p>
+  _{MsgPleaseGuess}
+  <form method=post action=@{GuessR} enctype=#{formEnctype}>
+      ^{formWidget}
+    <p><input type="submit">

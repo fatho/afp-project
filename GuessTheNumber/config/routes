@@ -1,1 +1,2 @@
 /team1/guessthenumber/                 HomeR  GET
+/team1/guessthenumber/guess            GuessR GET POST
