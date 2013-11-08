@@ -2,6 +2,12 @@
 TicTacToe/dist
 TicTacToe/main.cgi
 TicTacToe/yesod-devel
+BlankProject/dist
+BlankProject/main.cgi
+BlankProject/yesod-devel
+GuessTheNumber/dist
+GuessTheNumber/main.cgi
+GuessTheNumber/yesod-devel
 # Objekt- und Interface-Dateien werden vom Compiler erzeugt
 *.o
 *.hi
