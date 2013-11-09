@@ -1,2 +1,4 @@
-/team1/guessthenumber/                 HomeR  GET
-/team1/guessthenumber/guess            GuessR GET POST
+/team1/guessthenumber/                  HomeR  GET
+/team1/guessthenumber/guess/#String     GuessR GET POST
+/team1/guessthenumber/rules             RulesR GET POST
+/team1/guessthenumber/newgame/#Int/#Int NewGameR GET

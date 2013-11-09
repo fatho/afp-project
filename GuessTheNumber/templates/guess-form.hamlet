@@ -1,6 +1,6 @@
 <p>
   _{MsgPleaseGuess}
-  <form method=post action=@{GuessR} enctype=#{formEnctype}>
+  <form method=post action=@{GuessR encryptedState} enctype=#{formEnctype}>
       ^{formWidget}
     <p>
       <input .linkButton .blueButton type="submit" value="_{MsgSubmitGuess}">

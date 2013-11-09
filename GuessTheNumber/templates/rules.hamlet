@@ -1,0 +1,5 @@
+<p>
+  <form method=post action=@{RulesR} enctype=#{formEnctype}>
+      ^{formWidget}
+    <p>
+      <input .linkButton .blueButton type="submit">

@@ -1,6 +1,6 @@
 <p> 
   _{MsgHelpText}
 <p .linkBlock>
-  <a .linkButton .blueButton href=@{GuessR}>_{MsgTweakSettings}
+  <a .linkButton .blueButton href=@{RulesR}>_{MsgTweakSettings}
 <p .linkBlock>
-  <a .linkButton .redButton href=@{GuessR}>_{MsgStartGuessing}
+  <a .linkButton .redButton href=@{NewGameR 1 100}>_{MsgStartGuessing}

@@ -29,6 +29,8 @@ library
                      Settings.Development
                      Handler.Home
                      Handler.Guess
+                     Handler.Rules
+                     Handler.NewGame
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
