@@ -89,6 +89,7 @@ library
                  , diagrams-lib
                  , cookie
                  , colour
+                 , crypto-pubkey
 
 executable         main.cgi
     if flag(library-only)
