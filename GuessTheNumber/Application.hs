@@ -20,6 +20,7 @@ import Handler.Home
 import Handler.Guess
 import Handler.Rules
 import Handler.NewGame
+import Handler.GameEnded
 
 mkYesodDispatch "App" resourcesApp
 

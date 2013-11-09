@@ -1,6 +1,8 @@
 module Logic.Helpers
   ( translateMessage
   , setNormalTitle
+  , encryptNumber
+  , decryptNumber
   ) where
 
 import Prelude
@@ -17,3 +19,11 @@ setNormalTitle :: Widget
 setNormalTitle = do 
                    msg <- translateMessage MsgGameName
                    setTitle $ toHtml msg
+
+
+--TODO: Impelment this correctly.
+encryptNumber :: Int -> String
+encryptNumber = show
+
+decryptNumber :: String -> Int
+decryptNumber = read

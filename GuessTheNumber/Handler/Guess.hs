@@ -17,10 +17,9 @@ someForm = renderTable $ areq intField "" Nothing
 postGuessR :: String -> Handler Html
 postGuessR encryptedState = 
   do ((FormSuccess i,_), _) <- runFormPost someForm
-     defaultLayout $ do
-                  msgWrong <- translateMessage (MsgWrongGuess i)
-                  msgCorrect <- translateMessage (MsgCorrectGuess i)
-                  if (i == read encryptedState)
-                    then setMessage $ toHtml msgCorrect
-                    else setMessage $ toHtml msgWrong
-                  redirect (GuessR encryptedState)
+     defaultLayout $ if (i == decryptNumber encryptedState)
+                        then redirect (GameEndedR $ decryptNumber encryptedState)
+                        else do 
+                               msgWrong <- translateMessage (MsgWrongGuess i)
+                               setMessage $ toHtml msgWrong
+                               redirect (GuessR encryptedState)

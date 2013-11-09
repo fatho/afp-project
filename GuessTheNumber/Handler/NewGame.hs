@@ -13,6 +13,4 @@ startNewGame (lowerBound, upperBound) = do
   when (lowerBound > upperBound) $ fail "invalid bounds"
   -- Setup Game
   myNumber <- liftIO $ getStdRandom $ randomR (lowerBound, upperBound)
-  -- TODO: encrypt that number
-  let encrypted = show myNumber
-  redirect (GuessR encrypted)
+  redirect (GuessR $ encryptNumber myNumber)
