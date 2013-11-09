@@ -8,6 +8,13 @@ HelpText: I will think of a number between 1 and 100 and your goal is to guess i
 StartGuessing: Just start the game
 TweakSettings: I'd like to adjust the rules
 
+RandomRange: range of random numbers:
+LowerBound: lower bound:
+UpperBound: upper bound:
+SetRules: Set rules and let go!
+InvalidRange: You submitted an invalid range.
+NoInput: Please enter the range of the random number I should think of.
+
 PleaseGuess: Please guess a number:
 SubmitGuess: Submit guess!
 Guess: My guess: 
