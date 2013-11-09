@@ -18,4 +18,5 @@ NoInput: Please enter the range of the random number I should think of.
 PleaseGuess: Please guess a number:
 SubmitGuess: Submit guess!
 Guess: My guess: 
-LastGuess g@Int: You guessed number #{show g}
+WrongGuess g@Int: You guessed number #{show g}. That is not my number.
+CorrectGuess g@Int: You guessed number #{show g} - that is correct!
