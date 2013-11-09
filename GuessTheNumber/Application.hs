@@ -21,6 +21,7 @@ import Handler.Guess
 import Handler.Rules
 import Handler.NewGame
 import Handler.GameEnded
+import Handler.Favicon
 
 mkYesodDispatch "App" resourcesApp
 

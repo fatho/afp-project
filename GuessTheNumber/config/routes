@@ -3,3 +3,4 @@
 /team1/guessthenumber/rules                      RulesR GET POST
 /team1/guessthenumber/newgame/#Int/#Int          NewGameR GET
 /team1/guessthenumber/gameended/#EncGameState    GameEndedR GET
+/team1/guessthenumber/favicon.ico                FaviconR GET
