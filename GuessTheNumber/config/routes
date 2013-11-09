@@ -1,5 +1,5 @@
-/team1/guessthenumber/                  HomeR  GET
-/team1/guessthenumber/guess/#String     GuessR GET POST
-/team1/guessthenumber/rules             RulesR GET POST
-/team1/guessthenumber/newgame/#Int/#Int NewGameR GET
-/team1/guessthenumber/gameended/#Int    GameEndedR GET
+/team1/guessthenumber/                           HomeR  GET
+/team1/guessthenumber/guess/#EncGameState        GuessR GET POST
+/team1/guessthenumber/rules                      RulesR GET POST
+/team1/guessthenumber/newgame/#Int/#Int          NewGameR GET
+/team1/guessthenumber/gameended/#EncGameState    GameEndedR GET

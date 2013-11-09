@@ -1,2 +1,4 @@
 <p> 
-  _{MsgCorrectGuess number}
+  _{MsgCorrectGuess myNumber}
+<p>
+  _{MsgTotalGuesses totalGuesses}

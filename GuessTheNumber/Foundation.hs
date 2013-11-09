@@ -9,6 +9,7 @@ import Settings.Development (development)
 import Text.Hamlet (hamletFile)
 import System.Log.FastLogger (Logger)
 import Web.Cookie (setCookiePath)
+import Logic.State (EncGameState)
 
 data App = App
     { settings :: AppConfig DefaultEnv ()

@@ -33,6 +33,7 @@ library
                      Handler.NewGame
                      Handler.GameEnded
                      Logic.Helpers
+                     Logic.State
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -92,6 +93,8 @@ library
                  , cookie
                  , colour
                  , crypto-pubkey
+                 , base64-bytestring
+                 , cereal
 
 executable         main.cgi
     if flag(library-only)

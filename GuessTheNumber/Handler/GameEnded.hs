@@ -1,9 +1,13 @@
-{-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards, OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
 module Handler.GameEnded (getGameEndedR) where
 
 import Import
+import Logic.State
 
-getGameEndedR :: Int -> Handler Html
-getGameEndedR number = defaultLayout $ do 
-			             setNormalTitle
-			             $(widgetFile "game-ended")
+getGameEndedR :: EncGameState -> Handler Html
+getGameEndedR encState = defaultLayout $ do 
+  case decryptGameState encState of
+    Nothing -> redirect HomeR
+    Just (GameState {..}) -> do
+      setNormalTitle
+      $(widgetFile "game-ended")

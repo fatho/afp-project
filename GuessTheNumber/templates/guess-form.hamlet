@@ -1,6 +1,18 @@
 <p>
-  _{MsgPleaseGuess}
-  <form method=post action=@{GuessR encryptedState} enctype=#{formEnctype}>
-      ^{formWidget}
+  <p>
+    $case lastGuess
+      $of Nothing
+        _{MsgPleaseGuess}
+      $of Just i
+        _{MsgWrongGuess i}&nbsp;
+        $if myNumber > i
+          _{MsgNumIsGreater}
+        $else
+          _{MsgNumIsLess}
+        
+  <form method=post action=@{GuessR encryptedState}>
+    <input id="inputGuess" name="guess" type="number" required="" autofocus="autofocus" value="">
     <p>
       <input .linkButton .blueButton type="submit" value="_{MsgSubmitGuess}">
+  <p>
+    (_{MsgTotalGuesses totalGuesses})

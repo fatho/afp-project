@@ -18,5 +18,8 @@ NoInput: Bitte gib den Bereich der Zufallszahl an, die ich mir ausdenken soll.
 PleaseGuess: Bitte rate eine Zahl:
 SubmitGuess: Vermutung senden!
 Guess: Meine Vermutung: 
-WrongGuess g: Du hast die Zahl #{show g} geraten. Das ist leider falsch.
+WrongGuess g: Du hast die Zahl #{show g} geraten.
 CorrectGuess g: Du hast die Zahl #{show g} geraten - das ist richtig!
+NumIsGreater: Meine Zahl ist größer.
+NumIsLess: Meine Zahl ist kleiner.
+TotalGuesses i: Anzahl Versuche: #{show i}
