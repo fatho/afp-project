@@ -2,4 +2,5 @@
   _{MsgPleaseGuess}
   <form method=post action=@{GuessR} enctype=#{formEnctype}>
       ^{formWidget}
-    <p><input type="submit">
+    <p>
+      <input .linkButton .blueButton type="submit" value="_{MsgSubmitGuess}">

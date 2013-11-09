@@ -1,3 +1,11 @@
-$maybe msg <- mmsg
-    <div #message>#{msg}
-^{widget}
+<p .header>
+  <h1>_{MsgGameName}
+
+  <h2>_{MsgCredits}.
+
+  <h3>_{MsgGameDescription}
+
+<div .content>
+  $maybe msg <- mmsg
+      <div #message>#{msg}
+  ^{widget}

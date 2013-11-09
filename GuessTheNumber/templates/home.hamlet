@@ -1,0 +1,6 @@
+<p> 
+  _{MsgHelpText}
+<p .linkBlock>
+  <a .linkButton .blueButton href=@{GuessR}>_{MsgTweakSettings}
+<p .linkBlock>
+  <a .linkButton .redButton href=@{GuessR}>_{MsgStartGuessing}

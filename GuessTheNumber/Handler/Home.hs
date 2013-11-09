@@ -7,7 +7,4 @@ import Data.Text
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do 
              setTitle "Guess The Number"
-             $(widgetFile "introduction")
-             [whamlet|
-               <a href=@{GuessR}>_{MsgStartGuessing}
-             |]
+             $(widgetFile "home")

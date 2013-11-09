@@ -9,7 +9,6 @@ getGuessR :: Handler Html
 getGuessR = do (formWidget, formEnctype) <- generateFormPost someForm
                defaultLayout $ do
                  setTitle "Guess The Number"
-                 $(widgetFile "introduction")
                  $(widgetFile "guess-form")
 
 someForm :: Form Int
