@@ -8,8 +8,7 @@ getGuessR encryptedState =
   do 
     (formWidget, formEnctype) <- generateFormPost someForm
     defaultLayout $ do
-                 msg <- translateMessage MsgGameName
-                 setTitle $ toHtml msg
+                 setNormalTitle
                  $(widgetFile "guess-form")
 
 someForm :: Form Int

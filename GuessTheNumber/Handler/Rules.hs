@@ -2,7 +2,6 @@
 module Handler.Rules (getRulesR, postRulesR) where
 
 import Import
-import Foundation
 import Handler.NewGame
 
 getRulesR :: Handler Html
@@ -23,5 +22,5 @@ postRulesR = do
 
 renderRulePage :: (Int, Int) -> Maybe AppMessage -> Handler Html
 renderRulePage (lower, upper) formError = defaultLayout $ do
-  setTitle "Guess The Number"
+  setNormalTitle
   $(widgetFile "rules")
