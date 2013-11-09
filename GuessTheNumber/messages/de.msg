@@ -10,3 +10,5 @@ TweakSettings: Ich möchte die Regeln anpassen
 
 PleaseGuess: Bitte rate eine Zahl:
 SubmitGuess: Vermutung senden!
+Guess: Meine Vermutung: 
+LastGuess g: Du hast die Zahl #{show g} geraten.

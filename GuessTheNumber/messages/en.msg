@@ -10,3 +10,5 @@ TweakSettings: I'd like to adjust the rules
 
 PleaseGuess: Please guess a number:
 SubmitGuess: Submit guess!
+Guess: My guess: 
+LastGuess g@Int: You guessed number #{show g}

@@ -31,6 +31,7 @@ library
                      Handler.Guess
                      Handler.Rules
                      Handler.NewGame
+                     Logic.Helpers
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
