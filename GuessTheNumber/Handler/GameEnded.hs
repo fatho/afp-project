@@ -10,4 +10,5 @@ getGameEndedR encState = defaultLayout $ do
     Nothing -> redirect HomeR
     Just (GameState {..}) -> do
       setNormalTitle
+      let totalGuesses = length guessHistory
       $(widgetFile "game-ended")

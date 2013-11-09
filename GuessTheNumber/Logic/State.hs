@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards, NamedFieldPuns, BangPatterns #-}
+{-# LANGUAGE RecordWildCards, NamedFieldPuns #-}
 module Logic.State
   ( GameState (..)
   , EncGameState (..)
@@ -18,14 +18,12 @@ import System.Random
 import Web.PathPieces
 
 data GameState = GameState 
-                  { myNumber :: !Int
-                  , lastGuess :: !(Maybe Int)
-                  , totalGuesses :: !Int
-                  , salt :: !Int
-                  }
+                  { myNumber :: Int
+                  , guessHistory :: [Int]
+                  , salt :: Int
+                  } deriving (Show)
 
 newtype EncGameState = EncGameState { gameStateBS :: BS.ByteString } deriving (Eq)
-
 
 encryptGameState :: GameState -> EncGameState
 encryptGameState = EncGameState . Bin.encode 
@@ -45,8 +43,8 @@ instance Read EncGameState where
     Just x  -> [(x,"")]
 
 instance Bin.Serialize GameState where
-  put (GameState {..}) = Bin.put myNumber >> Bin.put lastGuess >> Bin.put totalGuesses >> Bin.put salt
-  get = GameState <$> Bin.get <*> Bin.get <*> Bin.get <*> Bin.get
+  put (GameState {..}) = Bin.put myNumber >> Bin.put guessHistory >> Bin.put salt
+  get = GameState <$> Bin.get <*> Bin.get <*> Bin.get
 
 instance PathPiece EncGameState where
   fromPathPiece = base64ToEncState . encodeUtf8

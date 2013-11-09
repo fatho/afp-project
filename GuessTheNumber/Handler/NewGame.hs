@@ -16,8 +16,7 @@ startNewGame (lowerBound, upperBound) = do
   num   <- liftIO $ getStdRandom $ randomR (lowerBound, upperBound)
   state <- liftIO $ newSalt $ GameState
                 { myNumber = num  
-                , lastGuess = Nothing
-                , totalGuesses = 0
+                , guessHistory = []
                 , salt = 0
                 }
   redirect (GuessR $ encryptGameState state)

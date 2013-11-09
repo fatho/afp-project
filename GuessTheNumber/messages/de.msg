@@ -23,3 +23,5 @@ CorrectGuess g: Du hast die Zahl #{show g} geraten - das ist richtig!
 NumIsGreater: Meine Zahl ist größer.
 NumIsLess: Meine Zahl ist kleiner.
 TotalGuesses i: Anzahl Versuche: #{show i}
+
+GuessHistory: Du hast die folgenden Zahlen geraten:
