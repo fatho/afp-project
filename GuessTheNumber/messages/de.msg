@@ -8,5 +8,12 @@ HelpText: Ich werde mir eine Zahl zwischen 1 and 100 ausdenken und du musst sie 
 StartGuessing: Spiel direkt starten
 TweakSettings: Ich möchte die Regeln anpassen
 
+RandomRange: Wertebereich:
+LowerBound: Untergrenze:
+UpperBound: Obergrenze:
+SetRules: Regeln festlegen und starten!
+InvalidRange: Der angegebene Bereich ist ungültig.
+NoInput: Bitte gib den Bereich der Zufallszahl an, die ich mir ausdenken soll.
+
 PleaseGuess: Bitte rate eine Zahl:
 SubmitGuess: Vermutung senden!
