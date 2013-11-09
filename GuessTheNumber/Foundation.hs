@@ -47,7 +47,7 @@ instance Yesod App where
         -- default-layout-wrapper is the entire page. Since the final
         -- value passed to hamletToRepHtml cannot be a widget, this allows
         -- you to use normal widget features in default-layout.
-
+        requestedRoute <- getCurrentRoute
         pc <- widgetToPageContent $ do
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")

@@ -9,6 +9,8 @@
   $maybe msg <- mmsg
       <div #message>#{msg}
   ^{widget}
-
-<div .controlBox>
-  <a .linkButton .blueButton href="@{HomeR}">_{MsgLinkHome}
+$case requestedRoute
+  $of Just HomeR
+  $of _
+    <div .controlBox>
+      <a .linkButton .blueButton href="@{HomeR}">_{MsgLinkHome}
