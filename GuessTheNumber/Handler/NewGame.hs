@@ -6,7 +6,7 @@ import System.Random
 #ifdef DEPLOY
 import Crypto.Random.API
 #else
-import Crypto.Random
+import "crypto-random" Crypto.Random
 #endif
 import Crypto.PubKey.RSA
 import Logic.State

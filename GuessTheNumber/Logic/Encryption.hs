@@ -1,3 +1,4 @@
+{-# LANGUAGE PackageImports #-}
 module Logic.Encryption where
 
 import Control.Applicative
@@ -5,7 +6,7 @@ import Crypto.PubKey.RSA
 #ifdef DEPLOY
 import Crypto.Random.API
 #else
-import Crypto.Random
+import "crypto-random" Crypto.Random
 #endif
 import System.IO
 import qualified Data.ByteString as BS
