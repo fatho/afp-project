@@ -2,6 +2,7 @@
 module Foundation where
 
 import Prelude
+import Control.Monad
 import Yesod
 import Yesod.Default.Config
 import Settings (widgetFile)
@@ -51,6 +52,8 @@ instance Yesod App where
         -- you to use normal widget features in default-layout.
         requestedRoute <- getCurrentRoute
         pc <- widgetToPageContent $ do
+            langs <- languages
+            when (head langs == "la") (toWidget [lucius|body, input {font-variant:small-caps}|])
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
