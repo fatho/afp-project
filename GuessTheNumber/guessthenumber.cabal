@@ -108,3 +108,16 @@ executable         main.cgi
                      , yesod
 
     ghc-options:       -threaded -O2
+
+executable          genkey
+    if flag(library-only)
+        Buildable: False
+        
+    main-is:        GenKey.hs
+    hs-source-dirs: genkey
+    build-depends:     base
+                     , crypto-pubkey
+                     , cereal
+                     , bytestring
+                     , crypto-random
+    ghc-options:    -threaded -O2
