@@ -1,8 +1,12 @@
+{-# LANGUAGE PackageImports #-}
 module Handler.NewGame (getNewGameR, startNewGame) where
 
 import Import
 import System.Random
+import "crypto-random" Crypto.Random
+import Crypto.PubKey.RSA
 import Logic.State
+import Logic.Encryption
 
 getNewGameR :: Int -> Int -> Handler Html
 getNewGameR = curry startNewGame
@@ -20,4 +24,10 @@ startNewGame (lowerBound, upperBound) =
                     { myNumber = fromIntegral num  
                     , guessHistory = []
                     }
-      redirect (GuessR $ encryptGameState state)
+
+      privKey <- liftIO $ loadKey "config/rsa_key"
+      entPool <- liftIO $ createEntropyPool
+      let
+        cprg = cprgCreate entPool :: SystemRNG
+
+      redirect (GuessR $ encryptGameState cprg (private_pub privKey) state)

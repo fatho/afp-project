@@ -1,4 +1,4 @@
-{-# LANGUAGE RecordWildCards, NamedFieldPuns #-}
+{-# LANGUAGE RecordWildCards, NamedFieldPuns, PackageImports #-}
 module Logic.State
   ( GameState (..)
   , EncGameState (..)
@@ -8,6 +8,9 @@ module Logic.State
 
 import Prelude
 import Control.Applicative
+import "crypto-random" Crypto.Random
+import Crypto.PubKey.RSA
+import Crypto.PubKey.RSA.PKCS15
 import Data.Serialize as Bin
 import Data.ByteString as BS
 import Data.ByteString.Char8 as BS8
@@ -24,11 +27,15 @@ data GameState = GameState
 
 newtype EncGameState = EncGameState { gameStateBS :: BS.ByteString } deriving (Eq)
 
-encryptGameState :: GameState -> EncGameState
-encryptGameState = EncGameState . Bin.encode 
+encryptGameState :: CPRG g => g -> PublicKey -> GameState -> EncGameState
+encryptGameState g pk = EncGameState . discardErrors . encrypt g pk . Bin.encode where
+  discardErrors (Left _, _) = BS.empty
+  discardErrors (Right x, _) = x
 
-decryptGameState :: EncGameState -> Maybe GameState
-decryptGameState = either (const Nothing) Just . Bin.decode . gameStateBS
+decryptGameState :: PrivateKey -> EncGameState -> Maybe GameState
+decryptGameState pk encst = either (const Nothing) Just $ (showLeft $ decrypt Nothing pk (gameStateBS encst)) >>= Bin.decode where
+  showLeft (Left x) = Left (show x)
+  showLeft (Right x) = Right x
 
 instance Show EncGameState where
   show = BS8.unpack . encStateToBase64

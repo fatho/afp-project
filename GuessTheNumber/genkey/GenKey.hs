@@ -8,8 +8,8 @@ import System.IO
 
 main :: IO ()
 main = do
-  entPool <- createEntropyPool
   args <- getArgs
+  entPool <- createEntropyPool
   let
     cprg = cprgCreate entPool :: SystemRNG
     ((pubkey, privkey), _) = generate cprg 128 65537

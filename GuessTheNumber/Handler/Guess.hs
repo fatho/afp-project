@@ -1,9 +1,12 @@
-{-# LANGUAGE RecordWildCards, OverloadedStrings, TemplateHaskell, QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards, OverloadedStrings, TemplateHaskell, QuasiQuotes, PackageImports #-}
 module Handler.Guess (getGuessR, postGuessR) where
 
 import Import
 import Data.Maybe
+import "crypto-random" Crypto.Random
+import Crypto.PubKey.RSA
 import Logic.State
+import Logic.Encryption
 
 import Debug.Trace
 
@@ -12,7 +15,8 @@ traceId x = traceShow x x
 getGuessR :: EncGameState -> Handler Html
 getGuessR encryptedState = do 
   defaultLayout $ do
-    case decryptGameState encryptedState of
+    privKey <- liftIO $ loadKey "config/rsa_key"
+    case decryptGameState privKey encryptedState of
       Just (GameState {myNumber = myNum', .. }) -> do
         setNormalTitle
         let
@@ -29,9 +33,14 @@ someForm = renderTable $ areq intField "" Nothing
 postGuessR :: EncGameState -> Handler Html
 postGuessR encryptedState = do 
   formResult <- runInputPost $ iopt intField "guess"
+  privKey <- liftIO $ loadKey "config/rsa_key"
+  entPool <- liftIO $ createEntropyPool
+  let
+    cprg = cprgCreate entPool :: SystemRNG
+    
   case formResult of
     Just i ->
-      defaultLayout $ case decryptGameState encryptedState of
+      defaultLayout $ case decryptGameState privKey encryptedState of
         Nothing  -> redirect HomeR
         Just gs  -> do
           let 
@@ -40,5 +49,6 @@ postGuessR encryptedState = do
                 , guessHistory = i : guessHistory gs
                 }
             targetRoute = if i == myNumber gs then GameEndedR else GuessR
-          redirect (targetRoute $ encryptGameState newState)
+
+          redirect (targetRoute $ encryptGameState cprg (private_pub privKey) newState)
     _ -> redirect (GuessR encryptedState)

@@ -5,6 +5,7 @@ import Crypto.PubKey.RSA
 import System.IO
 import qualified Data.ByteString as BS
 import qualified Data.Serialize as Bin
+import Prelude
 
 loadKey :: FilePath -> IO PrivateKey
 loadKey path = do

@@ -35,6 +35,8 @@ library
                      Handler.Favicon
                      Logic.Helpers
                      Logic.State
+                     Logic.Encryption
+
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -94,6 +96,7 @@ library
                  , cookie
                  , colour
                  , crypto-pubkey
+                 , crypto-random
                  , base64-bytestring
                  , base16-bytestring
                  , cereal
