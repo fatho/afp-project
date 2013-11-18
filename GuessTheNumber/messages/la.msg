@@ -4,7 +4,7 @@ GameDescription: Qui quaerit, qui inveniat.
 
 LinkHome: Redde ad exordium!
 
-HelpText: Excogito numerum, maior quam unum, sed minor quam centum. Suspicare hic numerum.
+HelpText: Excogito numerum, maior quam unum, sed minor quam centum. Suspicare hunc numerum.
 StartGuessing: ludus incipiat
 TweakSettings: cupio mutare regulas
 
