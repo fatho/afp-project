@@ -13,11 +13,12 @@ getGuessR :: EncGameState -> Handler Html
 getGuessR encryptedState = do 
   defaultLayout $ do
     case decryptGameState encryptedState of
-      Just (GameState {..}) -> do
+      Just (GameState {myNumber = myNum', .. }) -> do
         setNormalTitle
         let
           totalGuesses = length guessHistory
-          lastGuess = listToMaybe guessHistory
+          lastGuess = fmap fromIntegral $ listToMaybe guessHistory :: Maybe Int
+          myNumber = fromIntegral myNum' :: Int
 
         $(widgetFile "guess-form")
       Nothing -> redirect HomeR
@@ -33,10 +34,11 @@ postGuessR encryptedState = do
       defaultLayout $ case decryptGameState encryptedState of
         Nothing  -> redirect HomeR
         Just gs  -> do
-          newState <- liftIO $ newSalt $ gs 
+          let 
+            newState = gs 
                 { myNumber = myNumber gs
                 , guessHistory = i : guessHistory gs
                 }
-          let targetRoute = if i == myNumber gs then GameEndedR else GuessR
+            targetRoute = if i == myNumber gs then GameEndedR else GuessR
           redirect (targetRoute $ encryptGameState newState)
     _ -> redirect (GuessR encryptedState)

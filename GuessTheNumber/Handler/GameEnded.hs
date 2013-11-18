@@ -8,7 +8,10 @@ getGameEndedR :: EncGameState -> Handler Html
 getGameEndedR encState = defaultLayout $ do 
   case decryptGameState encState of
     Nothing -> redirect HomeR
-    Just (GameState {..}) -> do
+    Just (GameState {myNumber = myNum', guessHistory = gh}) -> do
       setNormalTitle
-      let totalGuesses = length guessHistory
+      let 
+        myNumber = fromIntegral myNum' :: Int
+        guessHistory = map fromIntegral gh :: [Int]
+        totalGuesses = length guessHistory
       $(widgetFile "game-ended")

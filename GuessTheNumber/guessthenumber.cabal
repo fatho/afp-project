@@ -95,6 +95,7 @@ library
                  , colour
                  , crypto-pubkey
                  , base64-bytestring
+                 , base16-bytestring
                  , cereal
 
 executable         main.cgi
@@ -112,7 +113,7 @@ executable         main.cgi
 executable          genkey
     if flag(library-only)
         Buildable: False
-        
+
     main-is:        GenKey.hs
     hs-source-dirs: genkey
     build-depends:     base

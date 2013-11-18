@@ -16,9 +16,8 @@ startNewGame (lowerBound, upperBound) =
     else do
       -- Setup Game
       num   <- liftIO $ getStdRandom $ randomR (lowerBound, upperBound)
-      state <- liftIO $ newSalt $ GameState
-                    { myNumber = num  
+      let state = GameState
+                    { myNumber = fromIntegral num  
                     , guessHistory = []
-                    , salt = 0
                     }
       redirect (GuessR $ encryptGameState state)
