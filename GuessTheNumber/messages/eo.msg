@@ -25,3 +25,4 @@ TotalGuesses i@Int: Numero de divenoj: #{show i}
 
 CorrectGuess g@Int: Vi divenis la nombro #{show g} - tio estas korekta!
 GuessHistory: Vi divenis la sekvajn nombrojn:
+GuessHistoryItem i@Int: #{show i}

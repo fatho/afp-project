@@ -10,6 +10,7 @@ import Text.Hamlet (hamletFile)
 import System.Log.FastLogger (Logger)
 import Web.Cookie (setCookiePath)
 import Logic.State (EncGameState)
+import Logic.Numbers
 
 data App = App
     { settings :: AppConfig DefaultEnv ()

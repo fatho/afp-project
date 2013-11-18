@@ -36,6 +36,7 @@ library
                      Logic.Helpers
                      Logic.State
                      Logic.Encryption
+                     Logic.Numbers
 
 
     if flag(dev) || flag(library-only)

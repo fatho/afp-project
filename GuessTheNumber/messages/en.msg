@@ -25,3 +25,4 @@ TotalGuesses i@Int: Number of guesses: #{show i}
 
 CorrectGuess g@Int: You guessed number #{show g} - that is correct!
 GuessHistory: You guessed the following numbers:
+GuessHistoryItem i@Int: #{show i}

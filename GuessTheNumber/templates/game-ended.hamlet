@@ -6,4 +6,4 @@
   _{MsgGuessHistory}
 <p>
   $forall i <- reverse guessHistory
-    <span .number>#{i}
+    <span .number>_{MsgGuessHistoryItem i}

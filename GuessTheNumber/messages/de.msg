@@ -25,3 +25,4 @@ NumIsLess: Meine Zahl ist kleiner.
 TotalGuesses i: Anzahl Versuche: #{show i}
 
 GuessHistory: Du hast die folgenden Zahlen geraten:
+GuessHistoryItem i@Int: #{show i}
