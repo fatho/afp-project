@@ -3,7 +3,11 @@ module Handler.NewGame (getNewGameR, startNewGame) where
 
 import Import
 import System.Random
-import "crypto-random" Crypto.Random
+#ifdef DEPLOY
+import Crypto.Random.API
+#else
+import Crypto.Random
+#endif
 import Crypto.PubKey.RSA
 import Logic.State
 import Logic.Encryption
@@ -26,8 +30,6 @@ startNewGame (lowerBound, upperBound) =
                     }
 
       privKey <- liftIO $ loadKey "config/rsa_key"
-      entPool <- liftIO $ createEntropyPool
-      let
-        cprg = cprgCreate entPool :: SystemRNG
+      cprg <- liftIO $ getCPRG
 
       redirect (GuessR $ encryptGameState cprg (private_pub privKey) state)

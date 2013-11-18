@@ -8,7 +8,11 @@ module Logic.State
 
 import Prelude
 import Control.Applicative
-import "crypto-random" Crypto.Random
+#ifdef DEPLOY
+import Crypto.Random.API
+#else
+import Crypto.Random
+#endif
 import Crypto.PubKey.RSA
 import Crypto.PubKey.RSA.PKCS15
 import Data.Serialize as Bin

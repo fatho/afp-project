@@ -1,5 +1,9 @@
 {-# LANGUAGE PackageImports, RecordWildCards #-}
+#ifdef DEPLOY
+import Crypto.Random.API
+#else
 import "crypto-random" Crypto.Random
+#endif
 import Crypto.PubKey.RSA
 import System.Environment
 import qualified Data.ByteString as BS
@@ -9,12 +13,15 @@ import System.IO
 main :: IO ()
 main = do
   args <- getArgs
+#ifdef DEPLOY
+  cprg <- getSystemRandomGen
+#else
   entPool <- createEntropyPool
-  let
-    cprg = cprgCreate entPool :: SystemRNG
-    ((pubkey, privkey), _) = generate cprg 128 65537
+  let cprg = cprgCreate entPool :: SystemRNG
+#endif
+  let ((pubkey, privkey), _) = generate cprg 128 65537
 
-    str = Bin.encode privkey
+  let str = Bin.encode privkey
 
   print (BS.length str)
 

@@ -3,7 +3,11 @@ module Handler.Guess (getGuessR, postGuessR) where
 
 import Import
 import Data.Maybe
-import "crypto-random" Crypto.Random
+#ifdef DEPLOY
+import Crypto.Random.API
+#else
+import Crypto.Random
+#endif
 import Crypto.PubKey.RSA
 import Logic.State
 import Logic.Encryption
@@ -34,10 +38,8 @@ postGuessR :: EncGameState -> Handler Html
 postGuessR encryptedState = do 
   formResult <- runInputPost $ iopt intField "guess"
   privKey <- liftIO $ loadKey "config/rsa_key"
-  entPool <- liftIO $ createEntropyPool
-  let
-    cprg = cprgCreate entPool :: SystemRNG
-    
+  cprg <- liftIO $ getCPRG
+
   case formResult of
     Just i ->
       defaultLayout $ case decryptGameState privKey encryptedState of

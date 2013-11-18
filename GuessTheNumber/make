@@ -1,2 +1,3 @@
 #!/bin/bash          
-ghc -O2 --make app/main.hs -o main.cgi
+ghc -O2 -cpp -DDEPLOY --make app/main.hs -o main.cgi
+ghc -O2 -cpp -DDEPLOY --make genkey/GenKey.hs -o genkey.bin
