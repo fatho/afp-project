@@ -14,3 +14,5 @@ GuessTheNumber/yesod-devel
 # Sublime-Text Projekte
 *.sublime-project
 *.sublime-workspace
+# auto-generated key files
+client_session_key.aes
