@@ -28,6 +28,16 @@ library
                      Settings
                      Settings.Development
                      Handler.Home
+                     Handler.Guess
+                     Handler.Rules
+                     Handler.NewGame
+                     Handler.GameEnded
+                     Handler.Favicon
+                     Logic.Helpers
+                     Logic.State
+                     Logic.Encryption
+                     Logic.Numbers
+
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -86,6 +96,11 @@ library
                  , diagrams-lib
                  , cookie
                  , colour
+                 , crypto-pubkey
+                 , crypto-random
+                 , base64-bytestring
+                 , base16-bytestring
+                 , cereal
 
 executable         main.cgi
     if flag(library-only)
@@ -98,3 +113,16 @@ executable         main.cgi
                      , yesod
 
     ghc-options:       -threaded -O2
+
+executable          genkey
+    if flag(library-only)
+        Buildable: False
+
+    main-is:        GenKey.hs
+    hs-source-dirs: genkey
+    build-depends:     base
+                     , crypto-pubkey
+                     , cereal
+                     , bytestring
+                     , crypto-random
+    ghc-options:    -threaded -O2

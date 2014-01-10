@@ -1,0 +1,9 @@
+<p> 
+  _{MsgCorrectGuess myNumber}
+<p>
+  _{MsgTotalGuesses totalGuesses}
+<p>
+  _{MsgGuessHistory}
+<p>
+  $forall i <- reverse guessHistory
+    <span .number>_{MsgGuessHistoryItem i}

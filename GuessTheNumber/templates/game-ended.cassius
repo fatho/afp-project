@@ -1,0 +1,3 @@
+span.number
+  margin: auto 10px
+  font-weight: bold

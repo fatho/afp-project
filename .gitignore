@@ -8,6 +8,7 @@ BlankProject/yesod-devel
 GuessTheNumber/dist
 GuessTheNumber/main.cgi
 GuessTheNumber/yesod-devel
+GuessTheNumber/config/rsa_key
 # Objekt- und Interface-Dateien werden vom Compiler erzeugt
 *.o
 *.hi

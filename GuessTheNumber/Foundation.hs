@@ -1,7 +1,8 @@
-{-# LANGUAGE OverloadedStrings, TemplateHaskell, MultiParamTypeClasses, TypeFamilies #-}
+{-# LANGUAGE OverloadedStrings, TemplateHaskell, QuasiQuotes, MultiParamTypeClasses, TypeFamilies #-}
 module Foundation where
 
 import Prelude
+import Control.Monad
 import Yesod
 import Yesod.Default.Config
 import Settings (widgetFile)
@@ -9,6 +10,8 @@ import Settings.Development (development)
 import Text.Hamlet (hamletFile)
 import System.Log.FastLogger (Logger)
 import Web.Cookie (setCookiePath)
+import Logic.State (EncGameState)
+import Logic.Numbers
 
 data App = App
     { settings :: AppConfig DefaultEnv ()
@@ -27,7 +30,7 @@ instance Yesod App where
 
     -- REPLACE whole right-hand side by "return Nothing" if no cookies needed;
     -- (avoids some potential complications, and makes things more efficient)
-    makeSessionBackend _ =
+    makeSessionBackend _ = return Nothing {-
       fmap (Just . if development
                    then id
                    else customizeSessionCookies $
@@ -36,7 +39,7 @@ instance Yesod App where
           (120 * 60) -- session idle timeout is 120 minutes
           (if development
            then "config/client_session_key.aes"
-           else "/srv/www/vhosts/www-pg-data/team1/guessthenumber/client_session_key.aes")
+           else "/srv/www/vhosts/www-pg-data/team1/guessthenumber/client_session_key.aes")-}
 
     defaultLayout widget = do
         master <- getYesod
@@ -47,8 +50,10 @@ instance Yesod App where
         -- default-layout-wrapper is the entire page. Since the final
         -- value passed to hamletToRepHtml cannot be a widget, this allows
         -- you to use normal widget features in default-layout.
-
+        requestedRoute <- getCurrentRoute
         pc <- widgetToPageContent $ do
+            langs <- languages
+            when (head langs == "la") (toWidget [lucius|body, input {font-variant:small-caps}|])
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 

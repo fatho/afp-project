@@ -1,0 +1,15 @@
+<p>
+  <form method="post" action="@{RulesR}">
+    <fieldset>
+      <legend>_{MsgRandomRange}
+      <label for="inputLower">_{MsgLowerBound}
+      <input #inputLower type="number" name="lower" value="#{lower}">
+      <label for="inputUpper">_{MsgUpperBound}
+      <input #inputUpper type="number" name="upper" value="#{upper}">
+    $case formError
+      $of Just err
+        <p .error>
+          _{err}
+      $of Nothing
+    <p>
+      <input .linkButton .blueButton type="submit" value="_{MsgSetRules}">
